@@ -2,6 +2,7 @@ import requests
 from datetime import datetime
 from fastapi import FastAPI
 
+
 def validate_status_service():
     """Validate state of service."""
     try:
@@ -34,7 +35,8 @@ def validate_status_service():
         for state in list_errors_not_pass:
             cant_stop += list(
                 filter(
-                    lambda x: state in x.get("name").lower(), found_pix_erro_last_status
+                    lambda x: state in x.get(
+                        "name").lower(), found_pix_erro_last_status
                 )
             )
 
@@ -43,9 +45,11 @@ def validate_status_service():
         return {"pix_status": True, "datetme": datetme_now}
     except:
         return {"error": "error in process bankly status"}
-    
-app = FastAPI()
 
-@app.get("/status")
+
+app = FastAPI(title="Healthcheck Service")
+
+
+@app.get("/bankly/status")
 def get_status_bankly():
     return validate_status_service()
