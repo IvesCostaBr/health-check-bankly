@@ -18,6 +18,11 @@ def validate_status_service():
         if not len(incident_not_solved):
             return {"pix_status": True, "datetme": datetme_now}
 
+        incident_critical = list(filter(
+            lambda x: "autenticação" in x.get('name').lower(), incident_not_solved))
+        if incident_critical:
+            return {"pix_status": False, "datetme": datetme_now}
+
         list_errors_not_pass = ["incoming", "instant", "dict"]
         found_pix_erro_last_status = list(
             filter(
