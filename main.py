@@ -1,7 +1,7 @@
 from datetime import datetime
 from fastapi import FastAPI
 import requests
-print("")
+print("teste commit")
 
 
 def validate_status_service():
