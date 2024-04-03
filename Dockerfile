@@ -1,4 +1,3 @@
-# 
 FROM python:3.9.18-bullseye
 
 ENV APP_HOME=/code
